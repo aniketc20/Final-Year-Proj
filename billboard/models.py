@@ -27,6 +27,7 @@ class Slot(models.Model):
     slot_timing = models.ForeignKey(SlotTimings, on_delete = models.PROTECT)
     company = models.ForeignKey(User, on_delete=models.PROTECT, blank=True, default=None, null=True)
     billboard = models.ForeignKey(Billboard, on_delete=models.PROTECT, blank=True, default=None)
+    video_url = models.URLField(max_length=200, default=None)
     def __str__(self) -> str:
         return str(self.slot_date) + " Timings:" + str(self.slot_timing.slot_from_time)\
          + " Location-" + self.billboard.billboard_name + "-" + self.billboard.billboard_location
