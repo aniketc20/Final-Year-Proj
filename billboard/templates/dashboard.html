@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/02176ec1ff.js" crossorigin="anonymous"></script>    
@@ -43,10 +45,32 @@
                 <button type="submit" id="submit" style="visibility: hidden;"> </button>
         </form>
         <p id="filename"></p>
-        <button id="upload"> Upload </button>
+        <button id="upload" disabled> Upload </button>
+        <a target="_blank" 
+    class="btn btn-info pull-right" 
+    href="{% url 'razorpay' %}">
+    Check It Out
+</a>
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-<script src="{% static 'scripts.js' %}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  if('{{ amount_paid }}'=='False') {
+    var payment_completed = false
+  }
+  else {
+    payment_completed = true
+  }
+  console.log(payment_completed)
+  if(payment_completed) {
+    $('#upload').prop("disabled", false);
+    console.log(payment_completed)
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+
+</script>
+<script src="{% static 'scripts.js' %}">
+</script>
 </html>
